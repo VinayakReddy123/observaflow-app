@@ -23,6 +23,7 @@
         <module>alert-service</module>
         <module>websocket-service</module>
         <module>api-gateway</module>
+        <module>auth-service</module>
     </modules>
 
     <properties>
