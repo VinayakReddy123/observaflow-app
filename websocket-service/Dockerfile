@@ -9,6 +9,7 @@ COPY processor-service/pom.xml processor-service/
 COPY alert-service/pom.xml alert-service/
 COPY websocket-service/pom.xml websocket-service/
 COPY api-gateway/pom.xml api-gateway/
+COPY auth-service/pom.xml auth-service/
 
 RUN mvn -pl websocket-service -am dependency:go-offline -B
 

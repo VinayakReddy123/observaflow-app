@@ -8,6 +8,7 @@ COPY ingest-service/pom.xml ingest-service/
 COPY processor-service/pom.xml processor-service/
 COPY alert-service/pom.xml alert-service/
 COPY websocket-service/pom.xml websocket-service/
+COPY auth-service/pom.xml auth-service/
 COPY api-gateway/pom.xml api-gateway/
 
 RUN mvn -pl alert-service -am dependency:go-offline -B
