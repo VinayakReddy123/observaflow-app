@@ -1,4 +1,4 @@
-package com.observaflow.authservice;
+package com.observaflow.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
