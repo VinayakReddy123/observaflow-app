@@ -39,8 +39,7 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
 
         // No header or doesn't start with "Bearer " → 401
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
-            return exchange.getResponse().setComplete();
+            return chain.filter(exchange);
         }
 
         // Extract the token (remove "Bearer " prefix)

@@ -5,18 +5,18 @@ WORKDIR /app
 
 # Copy pom.xml first (layer caching — deps won't re-download unless pom changes)
 COPY pom.xml ./
-COPY auth-service/pom.xml ./auth-service/pom.xml
-COPY ingest-service/pom.xml ./ingest-service/pom.xml
-COPY processor-service/pom.xml ./processor-service/pom.xml
-COPY alert-service/pom.xml ./alert-service/pom.xml
-COPY websocket-service/pom.xml ./websocket-service/pom.xml
-COPY api-gateway/pom.xml ./api-gateway/pom.xml
+COPY auth-service/pom.xml auth-service/pom.xml
+COPY ingest-service/pom.xml ingest-service/pom.xml
+COPY processor-service/pom.xml processor-service/pom.xml
+COPY alert-service/pom.xml alert-service/pom.xml
+COPY websocket-service/pom.xml websocket-service/pom.xml
+COPY api-gateway/pom.xml api-gateway/pom.xml
 
 
 RUN mvn -pl auth-service -am dependency:go-offline -B
 
 # Copy source and build
-COPY auth-service/src ./auth-service/src
+COPY auth-service/src auth-service/src
 RUN mvn -pl auth-service -am clean package -DskipTests -B
 
 # ---- Stage 2: Run ----

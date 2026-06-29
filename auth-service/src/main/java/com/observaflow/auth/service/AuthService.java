@@ -39,16 +39,16 @@ public class AuthService {
     }
 
     public Mono<String> login(String email, String password) {
-        Mono<User> user = userRepository.findByEmail(email);
-        Mono<Boolean> passwordMatch = user.map(u -> passwordEncoder.matches(password, u.getPassword()));
-        return passwordMatch.flatMap(match -> {
-            if (match) {
-                return user.map(u -> jwtService.generateToken(u.getId(), u.getTenantId(), "USER"));
-            } else {
-                return Mono.error(new RuntimeException("Invalid credentials"));
-            }
-        });
+        return userRepository.findByEmail(email)
+            .switchIfEmpty(Mono.error(new RuntimeException("User not found")))
+            .flatMap(user -> {
+                if (!passwordEncoder.matches(password, user.getPassword())) {
+                    return Mono.error(new RuntimeException("Invalid credentials"));
+                }
+                return Mono.just(jwtService.generateToken(user.getId(), user.getTenantId(), "USER"));
+            });
     }
+
 
     public Mono<String> generateApiKey(String name, String tenantId) {
         // Implementation for generating an API key for a user
