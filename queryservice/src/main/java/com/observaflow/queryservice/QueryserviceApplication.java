@@ -1,13 +1,13 @@
-package com.observaflow.websocket;
+package com.observaflow.queryservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class QueryserviceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(QueryserviceApplication.class, args);
 	}
 
 }

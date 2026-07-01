@@ -1,26 +1,27 @@
-package com.observaflow.ingest.model;
+package com.observaflow.queryservice.model;
 
 import java.util.Map;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import jakarta.validation.constraints.NotBlank;
+import org.springframework.data.annotation.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Document(collection = "metrics")
+@Document(collection = "raw_events")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class TelemetryEvent {
 
-    @NotBlank(message = "ServiceId is required")
+    @Id
+    private String id;
+
     private String serviceId;
 
-    @NotBlank(message = "TenantId is required")
     private String tenantId;
 
     private EventType type;
