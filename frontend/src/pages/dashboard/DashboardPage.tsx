@@ -3,9 +3,11 @@ import { groupMetricsByService } from '@/utils/groupMetricsByService'
 import { MetricCard } from '@/components/dashboard/MetricCard'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useAppStore } from '@/store/useAppStore'
 
 function DashboardContent() {
-  const { data, isLoading, isError, error } = useServicesQuery();
+  const { isLoading, isError, error } = useServicesQuery();
+  const data = useAppStore((s)=>s.services);
 
   if (isLoading) {
     return (

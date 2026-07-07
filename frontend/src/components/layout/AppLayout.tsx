@@ -2,6 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 import { useAppStore } from '@/store/useAppStore'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { useMetricsSocket } from '@/hooks/useMetricsSocket'
 
 const NAV_ITEMS = [
   { to: '/dashboard', label: 'Dashboard' },
@@ -14,7 +15,8 @@ const NAV_ITEMS = [
 
 export default function AppLayout() {
   const logout = useAppStore((s) => s.logout)
-
+  useMetricsSocket() // Initialize the WebSocket connection for metrics
+  
   return (
     <div className="flex min-h-screen bg-background text-foreground">
       <aside className="flex w-56 flex-col border-r border-border p-4">
