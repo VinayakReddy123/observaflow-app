@@ -44,4 +44,11 @@ public class QueryController {
         return traceQueryService.queryTrace(tenantId, traceId);
     }
 
+    @GetMapping("/traces/recent")
+    public Flux<TelemetryEvent> getRecentTraces(
+            @RequestHeader("X-Tenant-Id") String tenantId,
+            @RequestParam(defaultValue = "20") int limit){
+        return traceQueryService.queryRecentTraces(tenantId, limit);
+    }
+
 }

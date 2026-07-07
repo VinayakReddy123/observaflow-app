@@ -27,4 +27,15 @@ public class TraceQueryService {
 
         return mongoTemplate.find(query, TelemetryEvent.class, "raw_events");
     }
+
+    public Flux<TelemetryEvent> queryRecentTraces(String tenantId, int limit){
+        Criteria criteria = Criteria.where("tenantId").is(tenantId)
+                                    .and("type").is("TRACE");
+
+        Query query = Query.query(criteria)
+                           .with(Sort.by("timestamp").descending())
+                           .limit(limit);
+
+        return mongoTemplate.find(query, TelemetryEvent.class, "raw_events");
+    }
 }

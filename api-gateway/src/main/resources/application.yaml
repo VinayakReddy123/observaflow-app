@@ -29,12 +29,17 @@ spring:
             - Path=/alert/**
 
         - id: websocket-service
-          uri: http://localhost:8085
+          uri: http://localhost:8086
           predicates:
             - Path=/ws/**
+
+        - id: query-service
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/v1/query/**
 
 server:
   port: 8080
 
 jwt:
-  secret: 7yvRz8XpW8bN4mQ9K2tV5zC8xN1qW3zR6vT8yU0wX2m=
+  secret: TohteykvoZlJW7Bt9y5pKden+1ehr4p2L0xHS5yYIvLj0Pz7KEtLOKDXsMFCNX1E
